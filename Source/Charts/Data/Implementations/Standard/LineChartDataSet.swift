@@ -198,6 +198,15 @@ open class LineChartDataSet: LineRadarChartDataSet, ILineChartDataSet
         }
     }
     
+    /// If true, drawing line with gradient
+    open var drawGradientEnabled = true
+    
+    /// - returns: `true` if drawing circles for this DataSet is enabled, `false` ifnot
+    open var isDrawGradientEnabled: Bool { return drawGradientEnabled }
+    
+    /// This is the points where gradient should change color
+    public var gradientPositions: [CGFloat]?
+    
     // MARK: NSCopying
     
     open override func copyWithZone(_ zone: NSZone?) -> AnyObject
@@ -211,6 +220,7 @@ open class LineChartDataSet: LineRadarChartDataSet, ILineChartDataSet
         copy.lineCapType = lineCapType
         copy.drawCirclesEnabled = drawCirclesEnabled
         copy.drawCircleHoleEnabled = drawCircleHoleEnabled
+        copy.drawGradientEnabled = drawGradientEnabled
         copy.mode = mode
         return copy
     }

@@ -84,6 +84,15 @@ public protocol ILineChartDataSet: ILineRadarChartDataSet
     /// [1, 3, 4, 2] will paint [-   ----  -   ----  ]
     var lineDashLengths: [CGFloat]? { get set }
     
+    /// If true, drawing gradient is enabled
+    var drawGradientEnabled: Bool { get set }
+    
+    /// - returns: `true` if drawing gradient for this DataSet is enabled, `false` if not
+    var isDrawGradientEnabled: Bool { get }
+    
+    /// This is the points where gradient should change color
+    var gradientPositions: [CGFloat]? { get set }
+    
     /// Line cap type, default is CGLineCap.Butt
     var lineCapType: CGLineCap { get set }
     

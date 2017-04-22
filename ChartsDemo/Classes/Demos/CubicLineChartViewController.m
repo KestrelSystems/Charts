@@ -114,11 +114,20 @@
 - (void)setDataCount:(int)count range:(double)range
 {
     NSMutableArray *yVals1 = [[NSMutableArray alloc] init];
+
+    double mult = (range + 1);
+    double minVal = mult;
+    double maxVal = 0;
     
     for (int i = 0; i < count; i++)
     {
-        double mult = (range + 1);
         double val = (double) (arc4random_uniform(mult)) + 20;
+        if (val < minVal) {
+            minVal = val;
+        }
+        if (val > maxVal) {
+            maxVal = val;
+        }
         [yVals1 addObject:[[ChartDataEntry alloc] initWithX:i y:val]];
     }
     
@@ -138,9 +147,17 @@
         set1.drawCirclesEnabled = NO;
         set1.lineWidth = 1.8;
         set1.circleRadius = 4.0;
+        
+        set1.drawGradientEnabled = YES;
+        set1.gradientPositions = [NSArray arrayWithObjects:
+                                  [NSNumber numberWithFloat:minVal],
+                                  [NSNumber numberWithFloat:minVal + ((maxVal - minVal) / 2)],
+                                  [NSNumber numberWithFloat:maxVal], nil];
+        set1.colors = [NSArray arrayWithObjects:UIColor.redColor, UIColor.yellowColor, UIColor.greenColor, nil];
+        
         [set1 setCircleColor:UIColor.whiteColor];
         set1.highlightColor = [UIColor colorWithRed:244/255.f green:117/255.f blue:117/255.f alpha:1.f];
-        [set1 setColor:UIColor.whiteColor];
+        // [set1 setColor:UIColor.whiteColor];
         set1.fillColor = UIColor.whiteColor;
         set1.fillAlpha = 1.f;
         set1.drawHorizontalHighlightIndicatorEnabled = NO;
