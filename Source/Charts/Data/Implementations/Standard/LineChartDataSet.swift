@@ -221,6 +221,7 @@ open class LineChartDataSet: LineRadarChartDataSet, ILineChartDataSet
         copy.drawCirclesEnabled = drawCirclesEnabled
         copy.drawCircleHoleEnabled = drawCircleHoleEnabled
         copy.drawGradientEnabled = drawGradientEnabled
+        copy.gradientPositions = gradientPositions
         copy.mode = mode
         return copy
     }
